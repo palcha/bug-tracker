@@ -90,7 +90,7 @@ pipeline {
               publishHTML target: [
                       reportDir: 'tests-e2e/playwright-report',
                       reportFiles: 'index.html',
-                      reportName: 'Playwright API test report'
+                      reportName: 'Playwright E2E test report'
             ]
             }
         }
