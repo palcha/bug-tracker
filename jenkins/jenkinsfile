@@ -95,7 +95,30 @@ pipeline {
             }
         }
       }   
-        
+       stage('performance test'){
+        agent{
+            docker{
+                image 'grafana/k6:latest'
+                reuseNode true
+                arg '--network=host -u root --encryption=""'
+            }
+            steps {
+                dir(tests-perf){
+                    sh 'k6 run scripts.js'
+                }
+            }
+          post{
+            always{
+              junit 'tests-perf/test-results/results.xml'  
+              publishHTML target: [
+                      reportDir: 'tests-perf/playwright-report',
+                      reportFiles: 'index.html',
+                      reportName: 'Playwright perf test report'
+            ]
+            }
+        }  
+        }
+       } 
     }
     
     post{
