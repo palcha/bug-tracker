@@ -100,7 +100,7 @@ pipeline {
             docker{
                 image 'grafana/k6:latest'
                 reuseNode true
-                arg '--network=host -u root --encryption=""'
+                arg '--network=host -u 0 --encryption=""'
             }
         }
             steps {
