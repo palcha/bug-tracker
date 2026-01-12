@@ -7,8 +7,8 @@ pipeline {
                 echo 'Hello World'
                 sh "echo hello jenkins"
                 sh 'date'
+                sh 'time'
             }
         }
     }
 }
-cd ..
