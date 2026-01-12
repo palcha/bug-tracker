@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    stages {
-        stage('unit test parallel'){
-            parallel {
-
-           
+    stages {   
         stage('Unit test - backend') {
             agent{
                 docker{
@@ -15,7 +11,7 @@ pipeline {
             }
             steps {
                dir('bugtracker-backend'){
-                sh 'GOCACHE=/tmp/go-build GOMODCACHE=/tmp/go-mod go test -v -coverprofile=coverage.out ./...'
+                sh 'GOCACHE=/tmp/go-build GOMODCACHE=/tmp/go-mod go test ./...'
                }
             }
         }
@@ -36,7 +32,24 @@ pipeline {
                }
             }
         }
-         }
+        stage('lunch application'){
+            agent {
+                docker{
+                    image 'docker:27.5.1'
+                    reuseNode true
+                    args '-v /var/run/docker.sock:/var/run/docker.sock -u 0'
+                }
+            }
+            step{
+                sh 'docker compose up --build -d'
+            }
+        }
+         
+        
+    }
+    post{
+        always{
+            cleanWs()
         }
     }
 }
