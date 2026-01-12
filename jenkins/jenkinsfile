@@ -11,12 +11,7 @@ pipeline {
             }
             steps {
                dir('bugtracker-backend'){
-                sh '''
-                   GOCACHE=/tmp/go-build
-                   GOMODCACHE=/tmp/go-mod
-                   go test -v ./...
-
-                '''
+                sh 'GOCACHE=/tmp/go-build GOMODCACHE=/tmp/go-mod go test -v ./...'
                }
             }
         }
