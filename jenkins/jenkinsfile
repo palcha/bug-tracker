@@ -112,8 +112,8 @@ pipeline {
             always{
               junit 'tests-perf/test-results/results.xml'  
               publishHTML target: [
-                      reportDir: 'tests-perf/playwright-report',
-                      reportFiles: 'index.html',
+                      reportDir: 'tests-perf',
+                      reportFiles: 'perf-results.html',
                       reportName: 'Playwright perf test report'
             ]
             }
