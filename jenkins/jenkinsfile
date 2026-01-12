@@ -7,7 +7,6 @@ pipeline {
                 echo 'Hello DevOps'
                 sh "echo hello jenkins"
                 sh 'date'
-                sh 'time'
             }
         }
     }
