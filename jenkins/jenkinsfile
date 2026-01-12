@@ -104,7 +104,7 @@ pipeline {
             }
         }
             steps {
-                dir(tests-perf){
+                dir('tests-perf'){
                     sh 'k6 run scripts.js'
                 }
             }
@@ -120,8 +120,6 @@ pipeline {
         }  
         }
     } 
-    
-    
     post{
         always{
             cleanWs()
