@@ -51,6 +51,7 @@ pipeline {
                     reuseNode true
                     args '-u 0 --network=host'
                 }
+            }
                 steps {
                     dir('tests-api'){
                         sh 'npx wait-port http://localhost:8080/api/health -t 30000'
@@ -58,7 +59,7 @@ pipeline {
                         sh 'npm playwright test'
                     }
                 }
-            }
+            
         }
          
         
