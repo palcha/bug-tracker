@@ -102,6 +102,7 @@ pipeline {
                 reuseNode true
                 arg '--network=host -u root --encryption=""'
             }
+        }
             steps {
                 dir(tests-perf){
                     sh 'k6 run scripts.js'
@@ -119,7 +120,7 @@ pipeline {
         }  
         }
        } 
-    }
+    
     
     post{
         always{
